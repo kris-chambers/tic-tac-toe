@@ -7,14 +7,16 @@
 }
 
 .gameboard {
-  height: 500px;
-  width: 500px;
+  width: 306px;
   display: grid;
   grid-template-columns: repeat(3, auto);
   margin: 10px auto;
 }
 
 .cell {
-  box-shadow: 2px 2px 2px 2px #ecd7ba;
+  width: 100px;
+  height: 100px;
+  /* box-shadow: 2px 2px 2px 2px #ecd7ba; */
   border: 2px solid #ecd7ba;
 }
+
