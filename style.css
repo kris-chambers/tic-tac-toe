@@ -2,14 +2,6 @@
   --main-border: 2px solid #ecd7ba;
 }
 
-.header {
- 
-}
-
-.footer {
-  
-}
-
 .gameboard {
   width: 306px;
   display: grid;
@@ -20,6 +12,14 @@
 .cell {
   width: 100px;
   height: 100px;
+}
+
+.gameLetter p {
+ font-size: 95px; 
+ font-weight: 800;
+ position: relative;
+ top: -95px;
+ left: 15px;
 }
 
 /* Draw board */
