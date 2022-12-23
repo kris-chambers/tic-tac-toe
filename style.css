@@ -1,3 +1,7 @@
+:root {
+  --main-border: 2px solid #ecd7ba;
+}
+
 .header {
  
 }
@@ -16,7 +20,23 @@
 .cell {
   width: 100px;
   height: 100px;
-  /* box-shadow: 2px 2px 2px 2px #ecd7ba; */
-  border: 2px solid #ecd7ba;
 }
 
+/* Draw board */
+#three,
+#four,
+#five,
+#six,
+#seven,
+#eight {
+  border-top: var(--main-border);
+}
+
+#zero,
+#one,
+#three,
+#four,
+#six,
+#seven {
+  border-right: var(--main-border);
+}
