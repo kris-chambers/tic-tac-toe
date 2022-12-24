@@ -13,8 +13,6 @@
 .cell {
   width: 100px;
   height: 100px;
-  position: relative;
-  z-index: 3;
 }
 
 .gameLetter {
@@ -23,6 +21,8 @@
   font-weight: 300;
   height: 100%;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 /* Draw board */
