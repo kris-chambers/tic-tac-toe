@@ -15,6 +15,10 @@
   height: 100px;
 }
 
+.cell:hover {
+  background-color: #dad9d9;
+}
+
 .gameLetter {
   font-family: var(--letter-font);
   font-size: 95px; 

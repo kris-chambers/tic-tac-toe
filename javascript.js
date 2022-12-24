@@ -22,12 +22,3 @@ function addO(cell) {
   div.textContent = 'O';
 }
 
-addX(cellZero);
-addX(cellOne);
-addO(cellTwo);
-addX(cellThree);
-addX(cellFour);
-addO(cellFive);
-addX(cellSix);
-addX(cellSeven);
-addO(cellEight);
