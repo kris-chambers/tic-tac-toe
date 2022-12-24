@@ -12,14 +12,14 @@ function addX(cell) {
   const div = document.createElement('div');
   cell.appendChild(div);
   div.classList.add('gameLetter');
-  div.innerHTML = "<p>X</p>"
+  div.textContent = 'X';
 }
 
 function addO(cell) {
   const div = document.createElement('div');
   cell.appendChild(div);
   div.classList.add('gameLetter');
-  div.innerHTML = "<p>O</p>"
+  div.textContent = 'O';
 }
 
 addX(cellZero);
