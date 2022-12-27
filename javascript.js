@@ -8,26 +8,19 @@ const cellSix = document.querySelector('#six');
 const cellSeven = document.querySelector('#seven');
 const cellEight = document.querySelector('#eight');
 
-function addX(cell) {
+function addMarker(player, cell) {
   const div = document.createElement('div');
   cell.appendChild(div);
   div.classList.add('gameLetter');
-  div.textContent = 'X';
-};
-
-function addO(cell) {
-  const div = document.createElement('div');
-  cell.appendChild(div);
-  div.classList.add('gameLetter');
-  div.textContent = 'O';
-};
-
-class Player {
-  constructor(name, marker) {
-    this.name = name;
-    this.marker = marker;
-  }
+  const marker = player.playerMarker
+  div.textContent = marker;
 }
 
-let playerOne = new Player('Player One', 'X');
-let playerTwo = new Player('Player Two', 'O');
+const player = (playerName, playerMarker) => {
+  return {playerName, playerMarker}
+}
+
+const playerOne = player('Player One', 'X');
+const playerTwo = player('Player Two', 'O');
+
+addMarker(playerOne, cellFive);
