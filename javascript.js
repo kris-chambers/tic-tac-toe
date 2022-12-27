@@ -8,6 +8,8 @@ const cellSix = document.querySelector('#six');
 const cellSeven = document.querySelector('#seven');
 const cellEight = document.querySelector('#eight');
 
+// Function that adds marker to gameboard when given player 
+// and which cell to mark
 function addMarker(player, cell) {
   const div = document.createElement('div');
   cell.appendChild(div);
@@ -16,11 +18,17 @@ function addMarker(player, cell) {
   div.textContent = marker;
 }
 
+// Player creation factory function
 const player = (playerName, playerMarker) => {
   return {playerName, playerMarker}
 }
 
+// Creation of players One and Two
 const playerOne = player('Player One', 'X');
 const playerTwo = player('Player Two', 'O');
 
-addMarker(playerOne, cellFive);
+// Function for game board
+const gameBoard = (() => {
+  let gameBoardCells = ["", "", "", "", "", "", "", "", ""];
+  
+})();
