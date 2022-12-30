@@ -7,6 +7,8 @@ const cellFive = document.querySelector('#five');
 const cellSix = document.querySelector('#six');
 const cellSeven = document.querySelector('#seven');
 const cellEight = document.querySelector('#eight');
+const gameBoardCells = [cellZero, cellOne, cellTwo, cellThree, cellFour,
+   cellFive, cellSix, cellSeven, cellEight]
 
 // Function that adds marker to gameboard when given player 
 // and which cell to mark
@@ -29,6 +31,24 @@ const playerTwo = player('Player Two', 'O');
 
 // Function for game board
 const gameBoard = (() => {
-  let gameBoardCells = ["", "", "", "", "", "", "", "", ""];
-  
+  let gameBoardCells = {
+    cellZero: "",
+    cellOne: "",
+    cellTwo: "",
+    cellThree: "",
+    cellFour: "",
+    cellFive: "",
+    cellSix: "X",
+    cellSeven: "",
+    cellEight: "",
+  }
+  for (const cell in gameBoardCells) {
+    const div = document.createElement('div');
+    cell.appendChild(div);
+    div.classList.add('gameLetter');
+    const marker = gameBoardCells[cell];
+    div.textContent = marker;
+  }
 })();
+
+gameBoard();
