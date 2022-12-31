@@ -9,12 +9,16 @@ const gameBoard = (function() {
   const cellSeven = document.querySelector('#seven');
   const cellEight = document.querySelector('#eight');
   const gameBoardSpaces = ["X","O","X","O","X","O","X","O","X"];
+  const listOfIDs = ["zero","one","two","three","four","five","six",
+  "seven","eight"];
   for (let i = 0; i < gameBoardSpaces.length; i++) {
     const div = document.createElement('div');
     const board = document.querySelector('.gameboard');
     board.appendChild(div);
     div.classList.add('cell');
     div.classList.add('gameLetter');
+    const divID = listOfIDs[i];
+    div.setAttribute('id', divID)
     const marker = gameBoardSpaces[i];
     div.textContent = marker;
   }
