@@ -1,43 +1,31 @@
-// Object for actual gameboard
-const gameBoard = (function() {
-  const gameBoardSpaces = ["X","","","","","","","",""];
-  const listOfIDs = ["zero","one","two","three","four","five","six",
-  "seven","eight"];
-  for (let i = 0; i < gameBoardSpaces.length; i++) {
-    const div = document.createElement('div');
-    const board = document.querySelector('.gameboard');
-    board.appendChild(div);
-    div.classList.add('cell');
-    div.classList.add('gameLetter');
-    const divID = listOfIDs[i];
-    div.setAttribute('id', divID)
-    const marker = gameBoardSpaces[i];
-    div.textContent = marker;
-  }
-})();
-
-// Creation of players
-const Player = (playerName, playerMarker) => {
-  return {playerName, playerMarker};
+// player factory function
+const createPlayer = (name, marker) => {
+  return {name, marker};
 };
-const playerOne = Player("one", 'X');
-const playerTwo = Player("two", 'O');
 
-// Playing the game
-const playGame = (function() {
-  const cellZero = document.querySelector('#zero');
-  const cellOne = document.querySelector('#one');
-  const cellTwo = document.querySelector('#two');
-  const cellThree = document.querySelector('#three');
-  const cellFour = document.querySelector('#four');
-  const cellFive = document.querySelector('#five');
-  const cellSix = document.querySelector('#six');
-  const cellSeven = document.querySelector('#seven');
-  const cellEight = document.querySelector('#eight');
+// gameboard object
+const gameBoard = (() => {
   
-  cellZero.addEventListener('click', (event) => {
-    console.log("Test");
-    gameBoard.gameBoardSpaces[0] = "X";
-    
+  // generate board array
+  let board = [];
+  for (i = 0; i < 9; i++) {
+    board.push('');
+  }
+
+  // display square for each array item
+  let squares = document.querySelector('.squares');
+
+  board.forEach((item, index) => {
+    const square = document.createElement('div');
+    square.className = 'square';
+    squares.appendChild(square);
+  })
+
+  // add event listeners on each square
+  Array.from(squares.children).forEach((square, index) => {
+    square.addEventListener('click', () => {
+      square.classList.add()
+    })
   });
 })();
+

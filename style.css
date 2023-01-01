@@ -1,20 +1,20 @@
 :root {
-  --main-border: 4px solid #ecd7ba;
+  --main-border: 2px solid #ecd7ba;
   --letter-font: Arial, Helvetica, sans-serif;
 }
 
-.gameboard {
+.squares {
   width: 306px;
   display: grid;
   grid-template-columns: repeat(3, auto);
   margin: 10px auto;
 }
 
-.cell:hover {
+.square:hover {
   background-color: #dad9d9;
 }
 
-.gameLetter {
+.square {
   font-family: var(--letter-font);
   font-size: 95px; 
   font-weight: 300;
@@ -22,6 +22,7 @@
   width: 100px;
   display: flex;
   justify-content: center;
+  border: var(--main-border);
 }
 
 /* Draw board */
