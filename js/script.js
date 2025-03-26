@@ -87,10 +87,10 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
           squareOne: ${squareOne},
           squareTwo: ${squareTwo},
           squareThree: ${squareThree} 
-          `)
+        `);
         break;
-      }
-    }
+      };
+    };
 
     if (gameWon) {
       console.log(`${getActivePlayer().name} wins!`);
