@@ -8,13 +8,11 @@ function Gameboard() {
 
   const printBoard = () => console.log(board);
 
-  const gameboard = () => board;
-
   function placeMarker(square, playerMark) {
     board[square] == 0 ? board[square] = playerMark:console.log(`That spot is not available.`)
   }
 
-  return { printBoard, placeMarker, gameboard }
+  return { printBoard, placeMarker, board }
 };
 
 function Player(name, marker) {
@@ -53,7 +51,7 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
 
   const playRound = (square) => {
     board.placeMarker(square, getActivePlayer().mark);
-    evaluateForWinner(board.gameboard);
+    evaluateForWinner(board.board);
     switchActivePlayer();
     printNewRound();
   };
@@ -80,11 +78,20 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
       
       if (squareOne == 0 || squareTwo == 0 || squareThree == 0) {
         continue;
-      } else if (squareOne === squareTwo && squareTwo === squareThree) {
+      }
+
+      if (squareOne === squareTwo && squareTwo === squareThree) {
         gameWon = true;
+        console.log(`
+          condition: ${condition},
+          squareOne: ${squareOne},
+          squareTwo: ${squareTwo},
+          squareThree: ${squareThree} 
+          `)
         break;
       }
     }
+
     if (gameWon) {
       console.log(`${getActivePlayer().name} wins!`);
     }
