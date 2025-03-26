@@ -1,21 +1,17 @@
 function Gameboard() {
-  const rows = 3;
-  const columns = 3;
+  const totalSquares = 9;
   const board = [];
 
-  for (let i = 0; i < rows; i++) {
-    board[i] = [];
-    for (let j = 0; j < columns; j++) {
-      board[i].push(0);
-    };
+  for (let i = 0; i < totalSquares; i++) {
+    board.push(0);
   };
 
   const printBoard = () => console.log(board);
 
   const gameboard = () => board;
 
-  function placeMarker(row, column, playerMark) {
-    board[row][column] == 0 ? board[row][column] = playerMark:console.log(`That spot is not available.`)
+  function placeMarker(square, playerMark) {
+    board[square] == 0 ? board[square] = playerMark:console.log(`That spot is not available.`)
   }
 
   return { printBoard, placeMarker, gameboard }
@@ -38,7 +34,7 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     },
     {
       name: playerTwoName,
-      mark: 2
+      mark: -1
     }
   ]
 
@@ -55,8 +51,8 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     console.log(`${getActivePlayer().name}'s turn.`)
   }
 
-  const playRound = (row, column) => {
-    board.placeMarker(row, column, getActivePlayer().mark);
+  const playRound = (square) => {
+    board.placeMarker(square, getActivePlayer().mark);
     evaluateForWinner(board.gameboard);
     switchActivePlayer();
     printNewRound();
@@ -66,14 +62,14 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     let gameWon = false;
     
     const winningLines = [
-      [board[0][0], board[0][1], board[0][2]], //top row
-      [board[1][0], board[1][1], board[1][2]], //middle row
-      [board[2][0], board[2][1], board[2][2]], //bottom row
-      [board[0][0], board[1][0], board[2][0]], //left colum
-      [board[0][1], board[1][1], board[2][1]], //middle column
-      [board[0][2], board[1][2], board[2][2]], //right column
-      [board[0][0], board[1][1], board[2][2]], //diagonal1
-      [board[0][2], board[1][1], board[2][0]], //diagonal2
+      [0, 1, 2], //top row
+      [3, 4, 5], //middle row
+      [6, 7, 8], //bottom row
+      [0, 3, 6], //left colum
+      [1, 4, 7], //middle column
+      [2, 5, 8], //right column
+      [0, 4, 8], //diagonal1
+      [2, 4, 6], //diagonal2
     ]
 
     for (let i = 0; i < winningLines.length; i++) {
@@ -84,14 +80,11 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
       
       if (squareOne == 0 || squareTwo == 0 || squareThree == 0) {
         continue;
-      }
-
-      if (squareOne === squareTwo && squareTwo === squareThree) {
+      } else if (squareOne === squareTwo && squareTwo === squareThree) {
         gameWon = true;
         break;
       }
     }
-
     if (gameWon) {
       console.log(`${getActivePlayer().name} wins!`);
     }
