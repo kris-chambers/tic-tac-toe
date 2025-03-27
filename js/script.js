@@ -24,6 +24,7 @@ function Player(name, marker) {
 
 function GameController(playerOneName = "Player One", playerTwoName = "Player Two") {
   const board = Gameboard();
+  let gameWon = false;
 
   const players = [
     {
@@ -50,15 +51,19 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
   }
 
   const playRound = (square) => {
-    board.placeMarker(square, getActivePlayer().mark);
-    evaluateForWinner(board.board);
-    switchActivePlayer();
-    printNewRound();
+    if (!gameWon) {
+      printNewRound();
+      board.placeMarker(square, getActivePlayer().mark);
+      evaluateForWinner(board.board);
+      switchActivePlayer();
+    } else {
+      board.printBoard();
+      console.log(`Game Over!`)
+    }
+    
   };
 
   function evaluateForWinner(board) {
-    let gameWon = false;
-    
     const winningLines = [
       [0, 1, 2], //top row
       [3, 4, 5], //middle row
@@ -68,7 +73,7 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
       [2, 5, 8], //right column
       [0, 4, 8], //diagonal1
       [2, 4, 6], //diagonal2
-    ]
+    ];
 
     for (let i = 0; i < winningLines.length; i++) {
       const condition = winningLines[i];
@@ -82,24 +87,28 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
 
       if (squareOne === squareTwo && squareTwo === squareThree) {
         gameWon = true;
-        console.log(`
-          condition: ${condition},
-          squareOne: ${squareOne},
-          squareTwo: ${squareTwo},
-          squareThree: ${squareThree} 
-        `);
-        break;
+//        console.log(`
+//          condition: ${condition},
+//          squareOne: ${squareOne},
+//          squareTwo: ${squareTwo},
+//          squareThree: ${squareThree} 
+//        `);
+        console.log(`${getActivePlayer().name} wins!`);
+        return gameWon;
       };
     };
+  };
 
-    if (gameWon) {
-      console.log(`${getActivePlayer().name} wins!`);
-    }
-  }
-
-  printNewRound();
+//  printNewRound();
   
   return { playRound, getActivePlayer }; 
 };
 
 const game = GameController();
+
+game.playRound(0);
+game.playRound(8);
+game.playRound(1);
+game.playRound(6);
+game.playRound(2);
+game.playRound(0);
