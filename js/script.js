@@ -96,6 +96,12 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
         console.log(`${getActivePlayer().name} wins!`);
         return gameWon;
       };
+
+      if (!board.includes(0)) {
+        gameWon = true;
+        console.log("It's a tie!");
+        return gameWon;
+      };
     };
   };
 
@@ -106,9 +112,21 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
 
 const game = GameController();
 
+// test - player 1 wins
+// game.playRound(0);
+// game.playRound(8);
+// game.playRound(1);
+// game.playRound(6);
+// game.playRound(2);
+// game.playRound(0);
+
+// test - tie
 game.playRound(0);
-game.playRound(8);
-game.playRound(1);
-game.playRound(6);
 game.playRound(2);
-game.playRound(0);
+game.playRound(1);
+game.playRound(3);
+game.playRound(5);
+game.playRound(4);
+game.playRound(6);
+game.playRound(8);
+game.playRound(7);
