@@ -110,9 +110,27 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
   return { playRound, getActivePlayer }; 
 };
 
-const game = GameController();
+function GameDisplay() {
+  const squares = document.querySelectorAll(".square");
+  
+  squares.forEach(square => {
+    square.addEventListener("click", e => {
+      const newSpan = document.createElement("span");
 
-// test - player 1 wins
+      
+      square.append(newSpan);
+      newSpan.innerHTML = "x";
+    })
+  })
+
+}
+
+const game = GameController();
+const display = GameDisplay();
+
+// tests
+
+// player 1 wins
 // game.playRound(0);
 // game.playRound(8);
 // game.playRound(1);
@@ -120,13 +138,13 @@ const game = GameController();
 // game.playRound(2);
 // game.playRound(0);
 
-// test - tie
-game.playRound(0);
-game.playRound(2);
-game.playRound(1);
-game.playRound(3);
-game.playRound(5);
-game.playRound(4);
-game.playRound(6);
-game.playRound(8);
-game.playRound(7);
+// tie
+// game.playRound(0);
+// game.playRound(2);
+// game.playRound(1);
+// game.playRound(3);
+// game.playRound(5);
+// game.playRound(4);
+// game.playRound(6);
+// game.playRound(8);
+// game.playRound(7);

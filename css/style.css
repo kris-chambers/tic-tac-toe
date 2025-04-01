@@ -22,3 +22,13 @@ img {
   display: block;
   max-inline-size: 100%;
 }
+
+.gameboard {
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  grid-template-rows: repeat(3, 200px);
+}
+
+.square {
+  border: 1px solid black;
+}
