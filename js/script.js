@@ -121,12 +121,18 @@ function GameDisplay() {
       const newSpan = document.createElement("span");
       const indexNumber = parseInt(e.target.dataset.indexnumber);
       const playerMarker = game.getActivePlayer().symbol
+      const span = document.querySelector("span");
 
-      game.playRound(indexNumber);
-      e.target.append(newSpan);
-      newSpan.innerHTML = playerMarker;
-      // console.log(`Index Number: ${indexNumber}`);
-      // console.log(`Active Player Marker: ${playerMarker}`)
+      if (!e.target.contains(span)) {
+        game.playRound(indexNumber);
+        e.target.append(newSpan);
+        newSpan.classList.add("playerMark")
+        newSpan.innerHTML = playerMarker;
+        // console.log(`Index Number: ${indexNumber}`);
+        // console.log(`Active Player Marker: ${playerMarker}`)
+      }
+
+      
     }
   })
 
