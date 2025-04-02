@@ -63,7 +63,6 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
       board.printBoard();
       console.log(`Game Over!`)
     }
-    
   };
 
   function evaluateForWinner(board) {
@@ -101,12 +100,8 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
       };
     };
   };
-
-  function isGameWon() {
-    return gameWon;
-  }
   
-  return { playRound, getActivePlayer, isGameWon }; 
+  return { playRound, getActivePlayer }; 
 };
 
 function GameDisplay() {
@@ -129,14 +124,6 @@ function GameDisplay() {
       }
     };
   };
-
-  const gamewon = game.isGameWon();
-
-  if (gamewon) {
-    document.removeEventListener("click", handlePlayerClick);
-  }
-
-
 }
 
 const game = GameController();
