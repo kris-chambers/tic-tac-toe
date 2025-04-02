@@ -90,12 +90,6 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
 
       if (squareOne === squareTwo && squareTwo === squareThree) {
         gameWon = true;
-//        console.log(`
-//          condition: ${condition},
-//          squareOne: ${squareOne},
-//          squareTwo: ${squareTwo},
-//          squareThree: ${squareThree} 
-//        `);
         console.log(`${getActivePlayer().name} wins!`);
         return gameWon;
       };
@@ -108,33 +102,40 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     };
   };
 
-//  printNewRound();
+  function isGameWon() {
+    return gameWon;
+  }
   
-  return { playRound, getActivePlayer, activePlayer }; 
+  return { playRound, getActivePlayer, isGameWon }; 
 };
 
 function GameDisplay() {
   const game = GameController();
+
+  document.addEventListener("click", handlePlayerClick);
   
-  document.addEventListener("click", e => {
+  function handlePlayerClick(e) {
     if (e.target.matches(".square")) {
       const newSpan = document.createElement("span");
       const indexNumber = parseInt(e.target.dataset.indexnumber);
       const playerMarker = game.getActivePlayer().symbol
-      const span = document.querySelector("span");
-
-      if (!e.target.contains(span)) {
+  
+      if (!e.target.classList.contains("clicked")) {
         game.playRound(indexNumber);
+        e.target.classList.add("clicked");
         e.target.append(newSpan);
         newSpan.classList.add("playerMark")
         newSpan.innerHTML = playerMarker;
-        // console.log(`Index Number: ${indexNumber}`);
-        // console.log(`Active Player Marker: ${playerMarker}`)
       }
+    };
+  };
 
-      
-    }
-  })
+  const gamewon = game.isGameWon();
+
+  if (gamewon) {
+    document.removeEventListener("click", handlePlayerClick);
+  }
+
 
 }
 
