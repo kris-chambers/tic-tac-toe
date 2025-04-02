@@ -9,7 +9,8 @@ function Gameboard() {
   const printBoard = () => console.log(board);
 
   function placeMarker(square, playerMark) {
-    board[square] == 0 ? board[square] = playerMark:console.log(`That spot is not available.`)
+    board[square] == 0 ? board[square] = playerMark : console.log(`That spot is not available.`)
+    console.log(`Square: ${square}, playerMark: ${playerMark}`)
   }
 
   return { printBoard, placeMarker, board }
@@ -29,11 +30,13 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
   const players = [
     {
       name: playerOneName,
-      mark: 1
+      mark: 1,
+      symbol: "X",
     },
     {
       name: playerTwoName,
-      mark: -1
+      mark: -1,
+      symbol: "O",
     }
   ]
 
@@ -107,44 +110,27 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
 
 //  printNewRound();
   
-  return { playRound, getActivePlayer }; 
+  return { playRound, getActivePlayer, activePlayer }; 
 };
 
 function GameDisplay() {
-  const squares = document.querySelectorAll(".square");
+  const game = GameController();
   
-  squares.forEach(square => {
-    square.addEventListener("click", e => {
+  document.addEventListener("click", e => {
+    if (e.target.matches(".square")) {
       const newSpan = document.createElement("span");
+      const indexNumber = parseInt(e.target.dataset.indexnumber);
+      const playerMarker = game.getActivePlayer().symbol
 
-      
-      square.append(newSpan);
-      newSpan.innerHTML = "x";
-    })
+      game.playRound(indexNumber);
+      e.target.append(newSpan);
+      newSpan.innerHTML = playerMarker;
+      // console.log(`Index Number: ${indexNumber}`);
+      // console.log(`Active Player Marker: ${playerMarker}`)
+    }
   })
 
 }
 
 const game = GameController();
 const display = GameDisplay();
-
-// tests
-
-// player 1 wins
-// game.playRound(0);
-// game.playRound(8);
-// game.playRound(1);
-// game.playRound(6);
-// game.playRound(2);
-// game.playRound(0);
-
-// tie
-// game.playRound(0);
-// game.playRound(2);
-// game.playRound(1);
-// game.playRound(3);
-// game.playRound(5);
-// game.playRound(4);
-// game.playRound(6);
-// game.playRound(8);
-// game.playRound(7);
