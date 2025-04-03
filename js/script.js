@@ -59,9 +59,11 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
       board.placeMarker(square, getActivePlayer().mark);
       evaluateForWinner(board.board);
       switchActivePlayer();
+      return gameWon;
     } else {
       board.printBoard();
-      console.log(`Game Over!`)
+      console.log(`Game Over!`);
+      return gameWon;
     }
   };
 
@@ -101,7 +103,7 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     };
   };
   
-  return { playRound, getActivePlayer }; 
+  return { playRound, getActivePlayer, gameWon: () => gameWon}; 
 };
 
 function GameDisplay() {
@@ -121,10 +123,15 @@ function GameDisplay() {
         e.target.append(newSpan);
         newSpan.classList.add("playerMark")
         newSpan.innerHTML = playerMarker;
-      }
+      };
     };
   };
-}
+
+  if (game.gameWon()) {
+    document.removeEventListener("click", handlePlayerClick);
+  }
+
+};
 
 const game = GameController();
 const display = GameDisplay();
